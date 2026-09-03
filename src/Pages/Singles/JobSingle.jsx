@@ -1,65 +1,118 @@
-import React from 'react'
+
+import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import jobs from '../../Jobs/job'
+import '../../JobSingle.css'
+import { ApplicationContext } from '../../Context/ApplicationProvider'
+import Navbar from '../../Components/Navbar'
+
 
 const JobSingle = () => {
-
   const { id } = useParams()
 
   const job = jobs.find((data) => data.id === Number(id))
 
+  const { appliedJobs, applyForJob } = useContext(ApplicationContext)
+
   if (!job) {
-    return <h2>Job not found</h2>
+    return <h2 className="not-found">Job not found</h2>
+  }
+
+  // Checking  if  job is already applied
+  const isApplied = appliedJobs.some((item) => item.id === job.id)
+
+  const handleApply = () => {
+    if (!isApplied) {
+      applyForJob(job)
+      alert(`Applied for ${job.title} at ${job.company}!`)
+    }
   }
 
   return (
-    <div style={{padding:"40px"}}>
+    <>
+    <Navbar />
 
-      <img
-        src={job.logo}
-        alt={job.company}
-        width="100"
-      />
+    <div className="job-details-container">
 
-      <h1>{job.title}</h1>
+      <div className="job-header">
 
-      <h3>{job.company}</h3>
+        <div className="job-header-left">
+          <img
+            src={job.logo}
+            alt={job.company}
+            className="job-logo"
+          />
 
-      <p><strong>Location:</strong> {job.location}</p>
+          <div>
+            <h1 className="job-title">{job.title}</h1>
+            <h3 className="job-company">{job.company}</h3>
+          </div>
+        </div>
 
-      <p><strong>Salary:</strong> {job.salary}</p>
+        {isApplied ? (
+          <button className="apply-btn" disabled>
+            Applied ✓
+          </button>
+        ) : (
+          <button className="apply-btn" onClick={handleApply}>
+            Apply Now
+          </button>
+        )}
 
-      <p><strong>Experience:</strong> {job.experience}</p>
+      </div>
 
-      <p><strong>Type:</strong> {job.type}</p>
+      <div className="job-info-grid">
 
-      <p><strong>Status:</strong> {job.status}</p>
+        <div className="info-item">
+          <span className="info-label">Location</span>
+          <span className="info-value">{job.location}</span>
+        </div>
 
-      <p><strong>Posted On:</strong> {job.postedOn}</p>
+        <div className="info-item">
+          <span className="info-label">Salary</span>
+          <span className="info-value">{job.salary}</span>
+        </div>
 
-      <h3>Skills</h3>
+        <div className="info-item">
+          <span className="info-label">Experience</span>
+          <span className="info-value">{job.experience}</span>
+        </div>
 
-      <div style={{display:"flex",gap:"10px",flexWrap:"wrap"}}>
+        <div className="info-item">
+          <span className="info-label">Job Type</span>
+          <span className="info-value">{job.type}</span>
+        </div>
 
-        {
-          job.skills.map((skill,index) => (
-            <span
-              key={index}
-              style={{
-                padding:"8px 15px",
-                background:"#eee",
-                borderRadius:"20px"
-              }}
-            >
+        <div className="info-item">
+          <span className="info-label">Status</span>
+          <span className="info-value">{job.status}</span>
+        </div>
+
+        <div className="info-item">
+          <span className="info-label">Posted On</span>
+          <span className="info-value">{job.postedOn}</span>
+        </div>
+
+      </div>
+
+      <div className="skills-section">
+
+        <h3 className="skills-title">Required Skills</h3>
+
+        <div className="skills-list">
+          {job.skills.map((skill, index) => (
+            <span key={index} className="skill-badge">
               {skill}
             </span>
-          ))
-        }
+          ))}
+        </div>
 
       </div>
 
     </div>
+        </>
   )
 }
 
 export default JobSingle
+

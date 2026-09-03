@@ -11,6 +11,10 @@ import CategoryPage from './Pages/CategoryPage';
 import jobs from './Jobs/job';
 import About from './Pages/About';
 import Contact from './Pages/Contact';
+import MyApplications from './Pages/MyApplications';
+import Signin from './Registrations/SignIn';
+import Signup from './Registrations/SignUp';
+import CandidateProfile from './Pages/UserProfile/CandidateProfile';
 
 function App() {
 
@@ -18,13 +22,17 @@ function App() {
     <>
 
     <Routes>
-       <Route path="/" element={<LandingPage />} />
+       <Route path="/" element={<Signup />} />
+       <Route path="/signin" element={<Signin />} />
+       <Route path="/home" element={<LandingPage />} />
+       <Route path='/profile' element={<CandidateProfile /> }/>
        <Route path='/all' element={<All />}/>
        <Route path="/job/:id" element={<JobSingle />} />
        <Route path="/topcompany" element={<TopCompaniesPage />} />
        <Route path="/category/:cate" element={<CategoryPage />}/>
        <Route path="/about" element={<About />}/>
        <Route path="/contact" element={<Contact />}/>
+       <Route path="/myapplications" element={<MyApplications />}/>
     </Routes>
     </>
   )

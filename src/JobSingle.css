@@ -1,0 +1,142 @@
+.job-details-container {
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 35px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Header & Banner Layout */
+.job-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 2px solid #f0f2f5;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.job-header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.job-logo {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.job-title {
+  margin: 0 0 6px 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.job-company {
+  margin: 0;
+  font-size: 16px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Apply Button Styling */
+.apply-btn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.apply-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+/* Grid Meta Cards */
+.job-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.info-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 14px 18px;
+  border-radius: 10px;
+  transition: border-color 0.2s ease;
+}
+
+.info-item:hover {
+  border-color: #cbd5e1;
+}
+
+.info-label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 15px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* Skills Section */
+.skills-section {
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 25px;
+}
+
+.skills-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #0f172a;
+}
+
+.skills-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.skill-badge {
+  padding: 8px 16px;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 50px;
+  border: 1px solid #bfdbfe;
+}
+
+.not-found {
+  text-align: center;
+  margin-top: 50px;
+  color: #64748b;
+}

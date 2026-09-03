@@ -1,0 +1,155 @@
+/* Container reset and layout */
+.cb-about-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 20px 40px 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #333333;
+  line-height: 1.6;
+}
+
+/* Typography resets inside component */
+.cb-about-page h1,
+.cb-about-page h2,
+.cb-about-page h3 {
+  margin-top: 0;
+  color: #111827;
+  font-weight: 600;
+}
+
+.cb-about-page p {
+  margin-bottom: 0;
+  color: #4b5563;
+}
+
+/* Hero Section */
+.cb-about-hero {
+  text-align: center;
+  padding: 10px 0 30px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.cb-about-hero h1 {
+  font-size: 2.25rem;
+  margin-bottom: 12px;
+}
+
+.cb-about-subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #2563eb;
+  margin-bottom: 12px;
+}
+
+/* Content Section */
+.cb-about-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+  padding: 48px 0;
+  align-items: center;
+}
+
+.cb-about-text h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.cb-about-text p + p {
+  margin-top: 12px;
+}
+
+.cb-about-box {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.cb-about-box h3 {
+  font-size: 1.125rem;
+  margin-bottom: 8px;
+  color: #2563eb;
+}
+
+/* Features Section */
+.cb-about-features {
+  padding: 48px 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.cb-about-features h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.cb-about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.cb-about-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.cb-about-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+/* Mission Section */
+.cb-about-mission {
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 32px;
+  margin: 16px 0 48px 0;
+  text-align: center;
+}
+
+.cb-about-mission h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.cb-about-mission p {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* CTA Section */
+.cb-about-cta {
+  text-align: center;
+  padding: 32px 0;
+}
+
+.cb-about-cta h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.cb-about-cta p {
+  margin-bottom: 20px;
+}
+
+.cb-about-btn {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .cb-about-content {
+    grid-template-columns: 1fr;
+  }
+}

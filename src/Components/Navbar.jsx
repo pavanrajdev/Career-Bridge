@@ -6,7 +6,7 @@ const Navbar = () => {
     <>
       <div className='nav-section'>
         
-        <Link to={'/'}><div>
+        <Link to={'/home'}><div>
           <img 
             className='logo' 
             src="/assets/CB.png" 
@@ -16,7 +16,7 @@ const Navbar = () => {
         </Link>
 
         <div className='nav-pages'>
-          <Link to={'/'}>
+          <Link to={'/home'}>
           <div>Home</div>
           </Link>
           <Link to={'/all'}>
@@ -38,11 +38,9 @@ const Navbar = () => {
         </div>
 
         <div className='profile'>
+         <Link to={'/myapplications'}> <i className="fa-solid fa-suitcase" style={{ fontSize: "30px" }} title="Applied Jobs"></i></Link>
           <div>
-            <button className='login'>Login</button>
-          </div>
-          <div>
-            <button className='register'>Register</button>
+            <Link to={'/profile'}><i class="fa-regular fa-circle-user" style={{ fontSize: "30px",marginLeft:'30px'}}></i></Link>
           </div>
         </div>
 

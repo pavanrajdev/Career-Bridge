@@ -1,0 +1,238 @@
+.applications-page {
+    min-height: 100vh;
+    padding: 50px 80px;
+    background-color: #f8f9fa;
+}
+
+
+/* Header */
+
+.applications-header {
+    margin-bottom: 35px;
+}
+
+.applications-header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #222;
+}
+
+.applications-header p {
+    margin-top: 8px;
+    color: #777;
+    font-size: 16px;
+}
+
+
+/* Applications Container */
+
+.applications-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1000px;
+}
+
+
+/* Application Card */
+
+.application-card {
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 25px;
+    transition: 0.2s ease;
+}
+
+.application-card:hover {
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Card Header */
+
+.application-card-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.application-logo {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+.application-title {
+    flex: 1;
+}
+
+.application-title h2 {
+    margin: 0 0 6px;
+    font-size: 21px;
+    color: #222;
+}
+
+.application-title p {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+}
+
+
+/* Applied Badge */
+
+.applied-badge {
+    background-color: #e8f7ee;
+    color: #198754;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Job Information */
+
+.application-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 22px 0;
+}
+
+.application-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.application-info span {
+    color: #888;
+    font-size: 13px;
+}
+
+.application-info strong {
+    color: #333;
+    font-size: 14px;
+}
+
+
+/* Footer */
+
+.application-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px solid #eee;
+}
+
+.application-footer span {
+    color: #888;
+    font-size: 13px;
+}
+
+
+/* View Job Button */
+
+.view-job-btn {
+    text-decoration: none;
+    background-color: #2563eb;
+    color: white;
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.view-job-btn:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* No Applications */
+
+.no-applications {
+    max-width: 600px;
+    margin: 80px auto;
+    text-align: center;
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 50px 30px;
+}
+
+.no-applications h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.no-applications p {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+
+/* Browse Jobs Button */
+
+.browse-jobs-btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #2563eb;
+    color: white;
+    padding: 11px 22px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.browse-jobs-btn:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    .applications-page {
+        padding: 30px 20px;
+    }
+
+    .application-card-header {
+        flex-wrap: wrap;
+    }
+
+    .applied-badge {
+        margin-left: 83px;
+    }
+
+    .application-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .applications-header h1 {
+        font-size: 26px;
+    }
+
+    .application-info {
+        grid-template-columns: 1fr;
+    }
+
+    .application-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+}
