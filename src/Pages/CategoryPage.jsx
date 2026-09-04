@@ -1,23 +1,77 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import jobs from '../Jobs/job';
-import { Link,useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Navbar from '../Components/Navbar';
+import { ApplicationContext } from '../Context/ApplicationProvider';
 
 const CategoryPage = () => {
-     const { cate } = useParams();
+
+    const { cate } = useParams();
+
+    const [showAlert, setShowAlert] = useState(false);
+
+    const { appliedJobs, applyForJob } = useContext(ApplicationContext);
+
+    // Get jobs belonging to this category
     const categoryJobs = jobs.filter(
         (item) =>
             item.title.trim().toLowerCase() === cate.trim().toLowerCase()
     );
 
+    // Only featured jobs + remove already applied jobs
+    const filteredJobs = categoryJobs.filter(
+        (data) =>
+            data.featured === true &&
+            !appliedJobs.some((job) => job.id === data.id)
+    );
+
+    // Apply button function
+    const handleApply = (e, data) => {
+
+        // Stop Link navigation
+        e.preventDefault();
+
+        // Stop click from going to parent Link
+        e.stopPropagation();
+
+        // Apply for job
+        applyForJob(data);
+
+        // Show alert
+        setShowAlert(true);
+
+        // Hide alert after 2 seconds
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 2000);
+    };
+
     return (
         <>
-        <Navbar />
-         <div className="category-grid">
-            {
-                categoryJobs
-                    .filter((data) => data.featured === true)
-                    .map((data, idx) => {
+            <Navbar />
+
+            {/* Alert */}
+            {showAlert && (
+                <div
+                    style={{
+                        position: "fixed",
+                        top: "80px",
+                        right: "20px",
+                        backgroundColor: "green",
+                        color: "white",
+                        padding: "12px 20px",
+                        borderRadius: "5px",
+                        zIndex: 1000
+                    }}
+                >
+                    Job applied successfully!
+                </div>
+            )}
+
+            <div className="category-grid">
+
+                {
+                    filteredJobs.map((data) => {
 
                         return (
                             <Link
@@ -31,7 +85,10 @@ const CategoryPage = () => {
 
                                 <div className="feature-card">
 
-                                    <img src={data.logo} alt="" />
+                                    <img
+                                        src={data.logo}
+                                        alt=""
+                                    />
 
                                     <div
                                         style={{
@@ -42,10 +99,12 @@ const CategoryPage = () => {
                                         }}
                                     >
 
-                                        <p style={{
-                                            fontWeight: "bold",
-                                            fontSize: "medium"
-                                        }}>
+                                        <p
+                                            style={{
+                                                fontWeight: "bold",
+                                                fontSize: "medium"
+                                            }}
+                                        >
                                             {data.title}
                                         </p>
 
@@ -59,6 +118,7 @@ const CategoryPage = () => {
                                                     color: "rgb(128, 128, 128)"
                                                 }}
                                             ></i>
+
                                             {data.location}
                                         </p>
 
@@ -79,6 +139,7 @@ const CategoryPage = () => {
                                                         color: "rgb(128, 128, 128)"
                                                     }}
                                                 ></i>
+
                                                 {data.salary}
                                             </p>
 
@@ -90,11 +151,13 @@ const CategoryPage = () => {
                                                         color: "rgb(128, 128, 128)"
                                                     }}
                                                 ></i>
+
                                                 {data.type}
                                             </p>
 
                                         </div>
 
+                                        {/* Skills */}
                                         <div
                                             style={{
                                                 display: "flex",
@@ -129,7 +192,11 @@ const CategoryPage = () => {
 
                                     </div>
 
-                                    <button className="apply">
+                                    {/* Apply Button */}
+                                    <button
+                                        className="apply"
+                                        onClick={(e) => handleApply(e, data)}
+                                    >
                                         Apply Now
                                     </button>
 
@@ -138,7 +205,8 @@ const CategoryPage = () => {
                             </Link>
                         );
                     })
-            }
+                }
+
             </div>
         </>
     );

@@ -15,6 +15,7 @@ import MyApplications from './Pages/MyApplications';
 import Signin from './Registrations/SignIn';
 import Signup from './Registrations/SignUp';
 import CandidateProfile from './Pages/UserProfile/CandidateProfile';
+import SearchPage from './SearchPage';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
        <Route path="/topcompany" element={<TopCompaniesPage />} />
        <Route path="/category/:cate" element={<CategoryPage />}/>
        <Route path="/about" element={<About />}/>
+<Route path="/search" element={<SearchPage />} />
        <Route path="/contact" element={<Contact />}/>
        <Route path="/myapplications" element={<MyApplications />}/>
     </Routes>

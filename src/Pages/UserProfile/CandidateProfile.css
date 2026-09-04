@@ -358,9 +358,14 @@ body {
 }
 
 .edit-profile-button {
-    color: #3730a3;
-    background: #eef2ff;
+    margin-top: 10px;
+    color: white;
+    background: rgb(101, 140, 172);
     border: 1px solid #dbe3ff !important;
+    height:30px;
+    padding:6px;
+    border-radius:15px;
+    font-weight: bold;
 }
 
 .edit-profile-button:hover {

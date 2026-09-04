@@ -170,13 +170,15 @@
     margin:0px 80px;
     justify-content:center;
 }
-.feature-card {
-    width: 250px;
-    min-height: 260px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
+.feature-card { 
+    width: 250px; 
+    height: 300px; /* Fixed card height */
+    position: relative; /* Container for absolute positioning */
+    display: flex; 
+    flex-direction: column; 
+    border-radius: 10px; 
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    padding-bottom: 50px; /* Reserves space so content doesn't overlap the button */
 }
 .feature-card img{
     width: 80px;
@@ -270,9 +272,11 @@
     padding: 3px;
 }
 .apply {
+    position: absolute;
+    bottom: 8px; /* Locks button 8px from the bottom edge */
+    left: 5px;
+    right: 5px;
     width: calc(100% - 10px);
-    min-width: 0;
-    margin: 8px 5px;
     padding: 8px;
     background-color: rgb(0, 105, 252);
     color: white;

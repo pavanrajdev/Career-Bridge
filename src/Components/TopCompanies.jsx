@@ -1,86 +1,267 @@
-import React from 'react'
+
+import React, { useContext, useState } from 'react';
 
 import jobs from '../Jobs/job';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { ApplicationContext } from '../Context/ApplicationProvider';
 
-const TopCompanies = () => {
+const Featured = () => {
 
-  return (
+    const [showAlert, setShowAlert] = useState(false);
 
-    <>
+    const { appliedJobs, applyForJob } = useContext(ApplicationContext);
 
-<div style={{display:"flex",justifyContent:"space-between",marginTop:"50px", marginBottom:"20px", marginRight:"100px",marginLeft:"80px"}}>
- <h3 >TopCompanies </h3>
- <Link to={"/topcompany"}>
-   <p style={{color:"blue",marginTop:"30px"}} >    View All Top Company Jobs <i class="fa-solid fa-arrow-right"></i></p>
- </Link>
-   
-</div>
-     <div className='feature-section'>
+    const handleApply = (e, data) => {
 
-        {
+        // Prevent Link navigation
+        e.preventDefault();
 
-            jobs.filter((data) => data.topCompany === true).slice(0,4).map((data,idx)=>{
+        // Prevent click from going to parent Link
+        e.stopPropagation();
 
-                return <Link to={`job/${data.id}`}  style={{ textDecoration: "none", color: "inherit" }}><div className='feature-card'>
+        // Apply for the job
+        applyForJob(data);
 
-                    <img src={data.logo} alt="" />
+        // Show alert
+        setShowAlert(true);
 
-                    <div style={{display:"flex", flexDirection:"column", gap:"5px", padding:"0px 12px"}}>
+        // Hide alert after 2 seconds
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 2000);
+    };
 
-                         <p style={{fontWeight:"bold",fontSize:"medium"}}>{data.title}</p>
+    return (
+        <>
+            {/* Alert */}
 
-                    <p>{data.company}</p>
+            {showAlert && (
+                <div
+                    style={{
+                        position: "fixed",
+                        top: "20px",
+                        right: "20px",
+                        backgroundColor: "green",
+                        color: "white",
+                        padding: "12px 20px",
+                        borderRadius: "5px",
+                        zIndex: 1000
+                    }}
+                >
+                    Job Applied Successfully!
+                </div>
+            )}
 
-                    <p><i class="fa-solid fa-location-dot" style={{marginRight:"5px",color:"rgb(128, 128, 128)"}}></i>{data.location}</p>
 
-                    <div style={{display:"flex",justifyContent:"space-between", fontWeight:"bold",padding:"4px"}}>
+            {/* Heading */}
 
-                        <p><i class="fa-solid fa-money-bill-trend-up" style={{marginRight:"5px",color:"rgb(128, 128, 128)"}}></i>{data.salary}</p>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: "50px",
+                    marginBottom: "20px",
+                    marginRight: "100px",
+                    marginLeft: "80px"
+                }}
+            >
 
-                        <p><i class="fa-regular fa-clock" style={{marginRight:"5px",color:"rgb(128, 128, 128)"}}></i>{data.type}</p>
+                <h3>Featured Jobs</h3>
 
-                    </div>
+                <Link to="/all">
+                    <p
+                        style={{
+                            color: "blue",
+                            marginTop: "30px"
+                        }}
+                    >
+                        View all jobs
 
-                        <div style={{
-                            display: "flex",
-            flexWrap: "wrap",
-            gap: "5px",
-            maxHeight: "50px",
-            overflow: "hidden",
-            marginBottom: "8px"
-                            }}>
+                        <i
+                            className="fa-solid fa-arrow-right"
+                            style={{ marginLeft: "5px" }}
+                        ></i>
+                    </p>
+                </Link>
 
-                            {
+            </div>
 
-                             data.skills.map((i,idx)=>{
 
-                            return <button style={{minHeight:"15px",marginBottom:"0px",padding:"2px", border: "1px solid black",borderRadius: "15px",backgroundColor:'white',fontSize:'11px'}}>{i}</button>
+            {/* Jobs */}
 
-                        })
+            <div className="feature-section">
 
-                    }
+                {jobs
+                    .filter((data) => data.featured === true)
 
-                        </div>
+                    // Remove already applied jobs
+                    .filter(
+                        (data) =>
+                            !appliedJobs.some(
+                                (job) => job.id === data.id
+                            )
+                    )
 
-                      
-                    </div>
-                      <button className='apply'>Apply Now</button>
+                    // Show only first 8
+                    .slice(0, 8)
 
-             </div>
-</Link>
-            })
+                    .map((data) => {
 
-        }
+                        return (
+                            <Link
+                                key={data.id}
+                                to={`/job/${data.id}`}
+                                style={{
+                                    textDecoration: "none",
+                                    color: "inherit"
+                                }}
+                            >
 
-    </div>
+                                <div className="feature-card">
 
-    
+                                    {/* Company logo */}
 
-    
+                                    <img
+                                        src={data.logo}
+                                        alt={data.company}
+                                    />
 
-    </>
-  )
-}
 
-export default TopCompanies
+                                    {/* Job details */}
+
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            gap: "5px",
+                                            padding: "0px 12px"
+                                        }}
+                                    >
+
+                                        {/* Job title */}
+
+                                        <p
+                                            style={{
+                                                fontWeight: "bold",
+                                                fontSize: "medium"
+                                            }}
+                                        >
+                                            {data.title}
+                                        </p>
+
+
+                                        {/* Company */}
+
+                                        <p>
+                                            {data.company}
+                                        </p>
+
+
+                                        {/* Location */}
+
+                                        <p>
+                                            <i
+                                                className="fa-solid fa-location-dot"
+                                                style={{
+                                                    marginRight: "5px",
+                                                    color: "rgb(128, 128, 128)"
+                                                }}
+                                            ></i>
+
+                                            {data.location}
+                                        </p>
+
+
+                                        {/* Salary and type */}
+
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                justifyContent: "space-between",
+                                                fontWeight: "bold",
+                                                padding: "4px"
+                                            }}
+                                        >
+
+                                            <p>
+                                                <i
+                                                    className="fa-solid fa-money-bill-trend-up"
+                                                    style={{
+                                                        marginRight: "5px",
+                                                        color: "rgb(128, 128, 128)"
+                                                    }}
+                                                ></i>
+
+                                                {data.salary}
+                                            </p>
+
+
+                                            <p>
+                                                <i
+                                                    className="fa-regular fa-clock"
+                                                    style={{
+                                                        marginRight: "5px",
+                                                        color: "rgb(128, 128, 128)"
+                                                    }}
+                                                ></i>
+
+                                                {data.type}
+                                            </p>
+
+                                        </div>
+
+
+                                        {/* Skills */}
+
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                flexWrap: "wrap",
+                                                gap: "5px",
+                                                maxHeight: "50px",
+                                                overflow: "hidden",
+                                                marginBottom: "8px"
+                                            }}
+                                        >
+
+                                            {data.skills.map((skill) => (
+
+                                                <button
+                                                    key={skill}
+                                                    type="button"
+                                                >
+                                                    {skill}
+                                                </button>
+
+                                            ))}
+
+                                        </div>
+
+                                    </div>
+
+
+                                    {/* Apply button */}
+
+                                    <button
+                                        type="button"
+                                        className="apply"
+                                        onClick={(e) =>
+                                            handleApply(e, data)
+                                        }
+                                    >
+                                        Apply Now
+                                    </button>
+
+                                </div>
+
+                            </Link>
+                        );
+                    })}
+
+            </div>
+
+        </>
+    );
+};
+
+export default Featured;
