@@ -13,9 +13,9 @@ const Signin = () => {
 
     const handleSignin = (e) => {
         e.preventDefault();
-
+   
         const storedUser = localStorage.getItem(
-            "careerBridgeUser"
+            "careerBridgeUser" 
         );
 
         if (!storedUser) {
